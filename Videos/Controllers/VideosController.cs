@@ -1,24 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Collections.Generic;
 using System.Web.Http;
+using Videos.Models;
 
 namespace Videos.Controllers
 {
-    public class Video
-    {
-        public int Id { get; set; }
-        public string Title { get; set; } 
-    }
 
     public class VideosController : ApiController
     {
-        // GET api/video
-        public IEnumerable<string> GetAllVideos()
+        private VideoDb db;
+
+        public VideosController()
         {
-            return new string[] { "value1", "value2" };
+            db = new VideoDb();
+            db.Configuration.ProxyCreationEnabled = false;
+        }
+
+        // GET api/video
+        public IEnumerable<Video> GetAllVideos()
+        {
+            return db.Videos;
         }
 
         // GET api/video/5
