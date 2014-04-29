@@ -14,12 +14,13 @@ namespace Videos.Migrations
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(Videos.Models.VideoDb context)
+        protected override void Seed(VideoDb context)
         {
             context.Videos.AddOrUpdate(v => v.Title,
-                new Video() {Title = "MVC", Length = 120},
-                new Video() {Title = "LINQ", Length = 200}
+                new Video() { Title = "MVC", Length = 120 },
+                new Video() { Title = "LINQ", Length = 200 }
                 );
+
         }
     }
 }
