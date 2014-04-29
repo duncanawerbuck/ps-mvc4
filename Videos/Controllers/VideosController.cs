@@ -38,9 +38,17 @@ namespace Videos.Controllers
         }
 
         // POST api/video
-        public Video Post(Video video)
+        public HttpResponseMessage Post(Video video)
         {
-            return video;
+            if (ModelState.IsValid)
+            {
+                db.Videos.Add(video);
+                db.SaveChanges();
+
+                //TODO: BOOKMARK
+            }
+            
+            return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
 
         // PUT api/video/5
